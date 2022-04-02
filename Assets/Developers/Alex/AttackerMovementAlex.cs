@@ -65,7 +65,6 @@ public class AttackerMovementAlex : MonoBehaviour
         forwardRun *= speed;
 
         Vector3 moveDir = new Vector3(forwardRun.x, rb.velocity.y, forwardRun.z);
-
         
         rb.velocity = moveDir;
     }

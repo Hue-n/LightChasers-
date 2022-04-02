@@ -100,7 +100,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   cam: {fileID: 1991540624272644807}
-  speed: 10
+  speed: 20
   sensitivity: 3
 --- !u!136 &1991540622663593536
 CapsuleCollider:
