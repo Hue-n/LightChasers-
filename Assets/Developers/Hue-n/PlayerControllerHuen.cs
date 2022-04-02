@@ -11,12 +11,8 @@ public class PlayerControllerHuen : MonoBehaviour
     public float speed = 3;
     public float sensitivity = 3;
     public float jumpForce = 3;
-
+    float rotation;
     private Rigidbody rb;
-
-
-    float verticalRotation = 0;
-    float horizontalRotation = 0;
 
     [SerializeField] Transform groundCheck;
     [SerializeField] LayerMask ground;
@@ -26,6 +22,7 @@ public class PlayerControllerHuen : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        rotation = transform.rotation.y;
         rb = GetComponent<Rigidbody>();
     }
 
@@ -49,21 +46,6 @@ public class PlayerControllerHuen : MonoBehaviour
         }
         
     }
-
-    //void InterpretGameManager(GameCommands command)
-    //{
-    //    switch (command)
-    //    {
-    //        case GameCommands.dialogue:
-    //            canInput = false;
-    //            break;
-    //        case GameCommands.exitDialogue:
-    //            canInput = true;
-    //            break;
-    //        case GameCommands.transition:
-    //            break;
-    //    }
-    //}
 
     void CalculateMovement()
     {
@@ -93,15 +75,17 @@ public class PlayerControllerHuen : MonoBehaviour
 
     void HandleRotation()
     {
-        Vector2 lookDir = new Vector2(Input.GetAxis("Mouse X"), Input.GetAxis("Mouse Y"));
+        if(Input.GetKey(KeyCode.D))
+        {
+            rotation += Time.deltaTime * sensitivity;
+        }
 
-        verticalRotation += (-lookDir.y) * sensitivity;
-        horizontalRotation += lookDir.x * sensitivity;
+        if(Input.GetKey(KeyCode.A))
+        {
+            rotation -= Time.deltaTime * sensitivity;
+        }
 
-        verticalRotation = Mathf.Clamp(verticalRotation, -90, 90);
-
-        transform.localRotation = Quaternion.Euler(0, horizontalRotation, 0);
-        cam.localRotation = Quaternion.Euler(verticalRotation, cam.localRotation.y, cam.localRotation.z);
+        transform.localRotation = Quaternion.Euler(0, rotation, 0);
     }
 
     bool isGrounded()
