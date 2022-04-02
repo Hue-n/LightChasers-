@@ -60,6 +60,7 @@ public class UIManager : MonoBehaviour
         startMenu.SetActive(false);
         usernameField.interactable = false;
         Client.instance.ConnectToServer();
+        username = usernameField.text;
     }
 
     private void Update()
