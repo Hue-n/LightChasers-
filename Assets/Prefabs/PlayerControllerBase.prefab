@@ -114,9 +114,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   cam: {fileID: 1991540624272644807}
-  speed: 3
+  speed: 10
   sensitivity: 3
-  jumpForce: 3
+  jumpForce: 10
   groundCheck: {fileID: 6573265061174308752}
   ground:
     serializedVersion: 2
