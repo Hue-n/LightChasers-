@@ -586,8 +586,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0be94d03fbb920541be0e990aeb0e374, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  localPlayerPrefab: {fileID: 722190490283064770, guid: 09ea4939883e51143abb328e41c8ca81, type: 3}
-  playerPrefab: {fileID: 4842949940133325893, guid: d4328b7d27bc377478309d462f7e977b, type: 3}
+  localPlayerPrefab: {fileID: 7492311076464494155, guid: 9cecb76a0fdb63f4e8c24c577df30d98, type: 3}
+  playerPrefab: {fileID: 7492311076464494155, guid: 43f00b8a18aff7b4899b65596a0d53bb, type: 3}
   nothing: 0
 --- !u!4 &1950006545
 Transform:
