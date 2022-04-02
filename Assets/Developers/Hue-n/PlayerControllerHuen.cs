@@ -18,6 +18,9 @@ public class PlayerControllerHuen : MonoBehaviour
     float verticalRotation = 0;
     float horizontalRotation = 0;
 
+    [SerializeField] Transform groundCheck;
+    [SerializeField] LayerMask ground;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -65,7 +68,7 @@ public class PlayerControllerHuen : MonoBehaviour
 
         Vector3 moveDir = new Vector3(forwardConversion.x, rb.velocity.y, forwardConversion.z);
 
-        if (Input.GetKeyDown(KeyCode.Space))
+        if (Input.GetKeyDown(KeyCode.Space) && isGrounded())
         {
             moveDir += transform.up * jumpForce;
         }
@@ -84,5 +87,10 @@ public class PlayerControllerHuen : MonoBehaviour
 
         transform.localRotation = Quaternion.Euler(0, horizontalRotation, 0);
         cam.localRotation = Quaternion.Euler(verticalRotation, cam.localRotation.y, cam.localRotation.z);
+    }
+
+    bool isGrounded()
+    {
+        return Physics.CheckSphere(groundCheck.position, .1f, ground);
     }
 }
