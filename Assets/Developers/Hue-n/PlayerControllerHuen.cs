@@ -17,7 +17,7 @@ public class PlayerControllerHuen : MonoBehaviour
     [SerializeField] Transform groundCheck;
     [SerializeField] LayerMask ground;
 
-    bool doubleJump;
+    //bool doubleJump;
 
     // Start is called before the first frame update
     void Start()
@@ -40,11 +40,12 @@ public class PlayerControllerHuen : MonoBehaviour
             Cursor.lockState = CursorLockMode.None;
         }
 
+        /*
         if (isGrounded())
         {
             doubleJump = false;
         }
-        
+        */
     }
 
     void CalculateMovement()
@@ -63,12 +64,14 @@ public class PlayerControllerHuen : MonoBehaviour
             moveDir += transform.up * jumpForce;
         }
 
+        /*
         if (Input.GetKeyDown(KeyCode.Space) && !isGrounded() && doubleJump == false)
         {
             moveDir += transform.up * jumpForce;
             doubleJump = true;
             Debug.Log("Double Jumped? " + doubleJump);
         }
+        */
 
         rb.velocity = moveDir;
     }
