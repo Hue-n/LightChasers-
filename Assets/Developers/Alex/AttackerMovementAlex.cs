@@ -9,7 +9,7 @@ public class AttackerMovementAlex : MonoBehaviour
 
     public Transform cam;
 
-    public float speed = 10;
+    public float speed = 20;
     public float sensitivity = 3;
     
     private Rigidbody rb;
@@ -31,7 +31,7 @@ public class AttackerMovementAlex : MonoBehaviour
     {
         if (canInput)
         {
-            //constantForward();
+            constantForward();
             HandleRotation();
             Cursor.lockState = CursorLockMode.Locked;
         }
@@ -54,11 +54,16 @@ public class AttackerMovementAlex : MonoBehaviour
         cam.localRotation = Quaternion.Euler(verticalRotation, cam.localRotation.y, cam.localRotation.z);
     }
 
-    /*
+    
     void constantForward()
     {
         float moveX = Input.GetAxisRaw("Horizontal");
         float moveZ = Input.GetAxisRaw("Vertical");
+
+        Vector3 forwardRun = transform.forward;
+        forwardRun *= speed;
+
+        rb.velocity = forwardRun;
     }
-    */
+    
 }
