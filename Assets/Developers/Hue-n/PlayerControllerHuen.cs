@@ -21,6 +21,8 @@ public class PlayerControllerHuen : NetworkedPlayer
     [SerializeField] Transform groundCheck;
     [SerializeField] LayerMask ground;
 
+    bool doubleJump;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -40,6 +42,19 @@ public class PlayerControllerHuen : NetworkedPlayer
         {
             Cursor.lockState = CursorLockMode.None;
         }
+
+        /*
+        if (doubleJump == true)
+        {
+
+        }
+        */
+
+        if (isGrounded())
+        {
+            doubleJump = false;
+        }
+        
     }
 
     //void InterpretGameManager(GameCommands command)
@@ -68,9 +83,17 @@ public class PlayerControllerHuen : NetworkedPlayer
 
         Vector3 moveDir = new Vector3(forwardConversion.x, rb.velocity.y, forwardConversion.z);
 
-        if (Input.GetKeyDown(KeyCode.Space) && isGrounded())
+        if (Input.GetKeyDown(KeyCode.Space) && isGrounded() && doubleJump == false)
         {
             moveDir += transform.up * jumpForce;
+        }
+
+        if (Input.GetKeyDown(KeyCode.Space) && !isGrounded())
+        {
+            moveDir += transform.up * jumpForce;
+            doubleJump = true;
+            Debug.Log(doubleJump);
+            //doubleJump();
         }
 
         rb.velocity = moveDir;
@@ -93,4 +116,11 @@ public class PlayerControllerHuen : NetworkedPlayer
     {
         return Physics.CheckSphere(groundCheck.position, .1f, ground);
     }
+
+    /*
+    bool doubleJump()
+    {
+        return doubleJump = false;
+    }
+    */
 }
