@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class PlayerControllerHuen : NetworkedPlayer
+public class PlayerControllerHuen : MonoBehaviour
 {
     bool canInput = true;
 
@@ -83,12 +83,12 @@ public class PlayerControllerHuen : NetworkedPlayer
 
         Vector3 moveDir = new Vector3(forwardConversion.x, rb.velocity.y, forwardConversion.z);
 
-        if (Input.GetKeyDown(KeyCode.Space) && isGrounded() && doubleJump == false)
+        if (Input.GetKeyDown(KeyCode.Space) && isGrounded())
         {
             moveDir += transform.up * jumpForce;
         }
 
-        if (Input.GetKeyDown(KeyCode.Space) && !isGrounded())
+        if (Input.GetKeyDown(KeyCode.Space) && !isGrounded() && doubleJump == false)
         {
             moveDir += transform.up * jumpForce;
             doubleJump = true;
