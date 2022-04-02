@@ -60,10 +60,14 @@ public class AttackerMovementAlex : MonoBehaviour
         float moveX = Input.GetAxisRaw("Horizontal");
         float moveZ = Input.GetAxisRaw("Vertical");
 
+        Vector2 userInput = new Vector2(moveX, moveZ).normalized;
         Vector3 forwardRun = transform.forward;
         forwardRun *= speed;
 
-        rb.velocity = forwardRun;
+        Vector3 moveDir = new Vector3(forwardRun.x, rb.velocity.y, forwardRun.z);
+
+        
+        rb.velocity = moveDir;
     }
     
 }
