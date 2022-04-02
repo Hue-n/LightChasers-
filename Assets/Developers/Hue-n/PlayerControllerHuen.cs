@@ -86,7 +86,7 @@ public class PlayerControllerHuen : MonoBehaviour
             moveDir += transform.up * jumpForce;
             doubleJump = true;
             Debug.Log("Double Jumped? " + doubleJump);
-                    }
+        }
 
         rb.velocity = moveDir;
     }
