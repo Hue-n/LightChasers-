@@ -2,10 +2,13 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public delegate void FinishGame();
+public delegate void Winner(int id);
+public delegate void TimeCaster(float val);
+
 public class GameSetter : MonoBehaviour
 {
-    public static event FinishGame finishGameCaster;
+    public static event Winner winnerCaster;
+    public static event TimeCaster timeCaster;
 
     public Transform attackerSpawn;
     public Transform defenderSpawn;
@@ -15,13 +18,20 @@ public class GameSetter : MonoBehaviour
     GameObject attackerReference;
     GameObject defenderReference;
 
-    float gameTime;
+    [SerializeField] float gameTime;
     bool game = false;
 
     // Start is called before the first frame update
     void Start()
     {
-        gameTime = NewGameManager.instance.maxGameTime;
+        //gameTime = NewGameManager.instance.maxGameTime;
+        AttackCollisionCheck.aWinCaster += AnnounceWinner;
+        StartGame();
+    }
+
+    void AnnounceWinner(int winner)
+    {
+        winnerCaster?.Invoke(winner);
     }
 
     void StartGame()
@@ -37,6 +47,13 @@ public class GameSetter : MonoBehaviour
         if (game)
         {
             gameTime -= Time.deltaTime;
+            gameTime = Mathf.Clamp(gameTime, 0, float.MaxValue);
+            timeCaster?.Invoke(gameTime);
+        }
+
+        if (gameTime == 0)
+        {
+            AnnounceWinner(0);
         }
     }
 }

@@ -3,20 +3,19 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
-public delegate void StartGame();
 public delegate void FadeOutComplete();
 public delegate void FadeInComplete();
 
 public class NewGameManager : MonoBehaviour
 {
-    public static event StartGame startCaster;
     public static event FadeOutComplete fadeOutComplete;
     public static event FadeInComplete fadeInComplete;
 
     public static NewGameManager instance;
+    public CanvasGroup fadeOut;
     public float maxGameTime;
     public float fadeTime;
-    public CanvasGroup fadeOut;
+    int winner;
 
     // Start is called before the first frame update
     void Start()
@@ -25,7 +24,8 @@ public class NewGameManager : MonoBehaviour
         {
             instance = this;
             DontDestroyOnLoad(gameObject);
-
+            SceneManager.sceneLoaded += FadeIntoNew;
+            GameSetter.winnerCaster += SetWinner;
         }
         else
         {
@@ -33,15 +33,26 @@ public class NewGameManager : MonoBehaviour
         }
     }
 
-    public void StartGame()
+    void SetWinner(int id)
     {
-        StartCoroutine(SwitchScenes());
+        winner = id;
+        StartCoroutine(SwitchScenes(2));
     }
 
-    IEnumerator SwitchScenes()
+    public void FadeIntoNew(Scene scene, LoadSceneMode mode)
+    {
+        StartCoroutine(FadeIn(fadeTime));
+    }
+
+    public void StartGame()
+    {
+        StartCoroutine(SwitchScenes(1));
+    }
+
+    IEnumerator SwitchScenes(int scene)
     {
         yield return FadeOut(fadeTime);
-        SceneManager.LoadScene(1, LoadSceneMode.Single);
+        SceneManager.LoadScene(scene, LoadSceneMode.Single);
     }
 
     IEnumerator FadeOut(float _fadeOutTime)
@@ -66,7 +77,12 @@ public class NewGameManager : MonoBehaviour
             currentTime += Time.deltaTime;
             yield return null;
         }
-        fadeOut.alpha = 1;
+        fadeOut.alpha = 0;
         fadeInComplete?.Invoke();
+    }
+
+    public void QuitGame()
+    {
+        Application.Quit();
     }
 }
