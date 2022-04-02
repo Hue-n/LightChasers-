@@ -45,6 +45,25 @@ public class ClientHandle : MonoBehaviour
     
     }
 
+    // creates a player instance in the world without announcing it
+    public static void CreatePlayerInstance(Packet _packet)
+    {
+        int _id = _packet.ReadInt();
+        string _username = _packet.ReadString();
+        Vector3 _position = _packet.ReadVector3() + Vector3.up;
+        Quaternion _rotation = _packet.ReadQuaternion();
+
+        GameManager.instance.SpawnPlayer(_id, _username, _position, _rotation);
+    }
+
+    // destroys a player instance in the world without announcing it
+    public static void DestroyPlayerInstance(Packet _packet)
+    {
+        int _id = _packet.ReadInt();
+        string _username = _packet.ReadString();
+        GameManager.instance.DestroyPlayerInstance(_id);
+    }
+
     public static void DestroyDisconnected(Packet _packet)
     {
         int _id = _packet.ReadInt();
@@ -54,7 +73,7 @@ public class ClientHandle : MonoBehaviour
 
         Debug.Log($"Received TCP request to destroy Player {_id}");
 
-        GameManager.instance.DestroyDisconnected(_id);
+        GameManager.instance.DestroyPlayerInstance(_id);
     }
 
     //Step 6: Receive the packet from the server and unpack it to its proper classes and functions.

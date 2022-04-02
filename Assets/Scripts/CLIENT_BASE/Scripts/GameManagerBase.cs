@@ -12,7 +12,7 @@ public abstract class GameManagerBase : MonoBehaviour
     [Header("==========")]
     public bool nothing;
 
-    public void DestroyDisconnected(int _id)
+    public void DestroyPlayerInstance(int _id)
     {
         Debug.Log($"Destroying Player {_id}");
         Destroy(players[_id].gameObject);

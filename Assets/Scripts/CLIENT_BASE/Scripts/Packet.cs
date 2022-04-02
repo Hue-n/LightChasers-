@@ -15,7 +15,9 @@ public enum ServerPackets
     playerMovement,
     networkedBall,
     destroyDisconnected,
-    playerChatMessage
+    playerChatMessage,
+    createPlayerInstance,
+    destroyPlayerInstance
 }
 
 /// <summary>Sent from client to server.</summary>
@@ -24,7 +26,7 @@ public enum ClientPackets
     welcomeReceived = 1,
     udpTestReceived,
     playerMovement,
-    playerChatMessage
+    playerChatMessage,
 }
 
 public class Packet : IDisposable
