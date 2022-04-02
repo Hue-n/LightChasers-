@@ -43,13 +43,6 @@ public class PlayerControllerHuen : MonoBehaviour
             Cursor.lockState = CursorLockMode.None;
         }
 
-        /*
-        if (doubleJump == true)
-        {
-
-        }
-        */
-
         if (isGrounded())
         {
             doubleJump = false;
@@ -92,9 +85,8 @@ public class PlayerControllerHuen : MonoBehaviour
         {
             moveDir += transform.up * jumpForce;
             doubleJump = true;
-            Debug.Log(doubleJump);
-            //doubleJump();
-        }
+            Debug.Log("Double Jumped? " + doubleJump);
+                    }
 
         rb.velocity = moveDir;
     }
@@ -116,11 +108,4 @@ public class PlayerControllerHuen : MonoBehaviour
     {
         return Physics.CheckSphere(groundCheck.position, .1f, ground);
     }
-
-    /*
-    bool doubleJump()
-    {
-        return doubleJump = false;
-    }
-    */
 }
