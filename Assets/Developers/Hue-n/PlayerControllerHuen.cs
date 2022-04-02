@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class PlayerControllerHuen : MonoBehaviour
+public class PlayerControllerHuen : NetworkedPlayer
 {
     bool canInput = true;
 

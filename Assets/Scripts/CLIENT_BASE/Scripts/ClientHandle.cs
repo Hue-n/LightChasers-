@@ -68,7 +68,7 @@ public class ClientHandle : MonoBehaviour
             Quaternion _rotation = _packet.ReadQuaternion();
             Vector3 _velocity = _packet.ReadVector3();
 
-            GameManager.players[_id].transform.position = _position;
+            GameManager.players[_id].transform.position = _position + Vector3.down;
             GameManager.players[_id].transform.rotation = _rotation;
             GameManager.players[_id].velocity = _velocity;
         }
