@@ -11,34 +11,50 @@ public class AttackerMovementAlex : MonoBehaviour
 
     public float speed = 20;
     public float sensitivity = 3;
+    public float duration = 5f;
     
+    float currentTime;
     private Rigidbody rb;
 
     float verticalRotation = 0;
     float horizontalRotation = 0;
 
-    
+    bool forward = true;
 
+    float timer;
 
     // Start is called before the first frame update
     void Start()
     {
         rb = GetComponent<Rigidbody>();
+        currentTime = duration;
     }
 
     // Update is called once per frame
     void Update()
     {
-        if (canInput)
+        if (canInput && forward)
         {
             constantForward();
             HandleRotation();
             Cursor.lockState = CursorLockMode.Locked;
         }
+
+        else if (canInput && !forward)
+        {
+            constantBackward();
+            HandleRotation();
+        }
+
         else
         {
             Cursor.lockState = CursorLockMode.None;
         }
+    }
+
+    public void SetForward(bool val)
+    {
+        forward = val;
     }
 
     void HandleRotation()
@@ -67,6 +83,28 @@ public class AttackerMovementAlex : MonoBehaviour
         Vector3 moveDir = new Vector3(forwardRun.x, rb.velocity.y, forwardRun.z);
         
         rb.velocity = moveDir;
+    }
+
+    public void constantBackward()
+    {
+        float moveX = Input.GetAxisRaw("Horizontal");
+        float moveZ = Input.GetAxisRaw("Vertical");
+
+        Vector2 userInput = new Vector2(moveX, moveZ).normalized;
+        Vector3 backwardRun = -transform.forward;
+        backwardRun *= speed;
+
+        Vector3 moveDir = new Vector3(backwardRun.x, rb.velocity.y, backwardRun.z);
+        
+        rb.velocity = moveDir;
+
+        currentTime -= Time.deltaTime;
+
+        if(currentTime < 0)
+        {
+            forward = true;
+            currentTime = duration;
+        }
     }
     
 }
