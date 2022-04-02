@@ -95,4 +95,21 @@ public class PlayerControllerHuen : MonoBehaviour
     {
         return Physics.CheckSphere(groundCheck.position, .1f, ground);
     }
+
+    public void InvertControls()
+    {
+        if(Input.GetKey(KeyCode.A))
+        {
+            rotation += Time.deltaTime * sensitivity;
+        }
+
+        if(Input.GetKey(KeyCode.D))
+        {
+            rotation -= Time.deltaTime * sensitivity;
+        }
+
+        transform.localRotation = Quaternion.Euler(0, rotation, 0);
+    }
+
+
 }
