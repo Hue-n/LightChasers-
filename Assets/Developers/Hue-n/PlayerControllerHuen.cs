@@ -11,6 +11,8 @@ public class PlayerControllerHuen : MonoBehaviour
 
     public GameObject invertedText;
     public GameObject SlowdownText;
+    public GameObject SuperjumpText;
+
 
     public float speed = 3;
     public float sensitivity = 3;
@@ -196,5 +198,17 @@ public class PlayerControllerHuen : MonoBehaviour
 
     }
 
+    public void superjump()
+    {
+        jumpForce = jumpForce * 2;
+        SuperjumpText.SetActive(true);
 
+        if(currentTime < 0)
+        {
+            jumpForce = 3;
+            currentTime = duration;
+            SuperjumpText.SetActive(false);
+
+        }
+    }
 }
