@@ -17,7 +17,7 @@ public class DefenderInvertedMovement : MonoBehaviour
         Debug.Log("Defender Inverted");
 
         //call defender script function that inverts their movement
-        player.GetComponent<PlayerControllerHuen>().SetForward(false);
+        //player.GetComponent<PlayerControllerHuen>().SetForward(false);
 
         Destroy(gameObject);
     }
