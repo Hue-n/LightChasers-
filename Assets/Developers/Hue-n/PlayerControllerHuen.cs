@@ -10,6 +10,7 @@ public class PlayerControllerHuen : MonoBehaviour
     public Transform cam;
 
     public GameObject invertedText;
+    public GameObject SlowdownText;
 
     public float speed = 3;
     public float sensitivity = 3;
@@ -180,12 +181,16 @@ public class PlayerControllerHuen : MonoBehaviour
     {
         speed = speed / 2;
 
+        SlowdownText.SetActive(true);
+
         currentTime -= Time.deltaTime;
 
         if(currentTime < 0)
         {
             speed = 20;
             currentTime = duration;
+            SlowdownText.SetActive(false);
+
         }
 
 
