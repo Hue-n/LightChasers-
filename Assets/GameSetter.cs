@@ -15,8 +15,11 @@ public class GameSetter : MonoBehaviour
 
     public GameObject attackerPrefab;
     public GameObject defenderPrefab;
+    public GameObject explosionVFX;
+
     GameObject attackerReference;
     GameObject defenderReference;
+
 
     [SerializeField] float gameTime;
     bool game = false;
@@ -36,6 +39,7 @@ public class GameSetter : MonoBehaviour
 
     void AnnounceWinner(int winner)
     {
+        Instantiate(explosionVFX, attackerReference.transform.position, Quaternion.identity);
         winnerCaster?.Invoke(winner);
     }
 
