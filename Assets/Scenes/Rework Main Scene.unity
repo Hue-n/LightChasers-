@@ -469,7 +469,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   fadeOut: {fileID: 2039718020}
-  maxGameTime: 10
+  maxGameTime: 105
   fadeTime: 1
 --- !u!1 &1043860417
 GameObject:
