@@ -144,13 +144,13 @@ public class PlayerControllerHuen : MonoBehaviour
 
         if(Input.GetKey(KeyCode.W))
         {
-            Debug.Log("W pressed");
+            //Debug.Log("W pressed");
             //rb.velocity = invertedmoveDir;
         }
 
         if(Input.GetKey(KeyCode.S))
         {
-            Debug.Log("S pressed");
+            //Debug.Log("S pressed");
             //rb.velocity = invertedmoveDir;
         }
 

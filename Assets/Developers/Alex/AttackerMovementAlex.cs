@@ -11,6 +11,7 @@ public class AttackerMovementAlex : MonoBehaviour
     public GameObject camera;
     public GameObject ReversedText;
     public GameObject SlowdownText;
+    public GameObject SpeedupText;
 
     public float speed = 20;
     public float sensitivity = 3;
@@ -168,6 +169,25 @@ public class AttackerMovementAlex : MonoBehaviour
             speed = 20;
             currentTime = duration;
             SlowdownText.SetActive(false);
+
+        }
+
+
+    }
+
+    public void speedup()
+    {
+        speed = speed * 2;
+
+        SpeedupText.SetActive(true);
+
+        currentTime -= Time.deltaTime;
+
+        if(currentTime < 0)
+        {
+            speed = 20;
+            currentTime = duration;
+            SpeedupText.SetActive(false);
 
         }
 
