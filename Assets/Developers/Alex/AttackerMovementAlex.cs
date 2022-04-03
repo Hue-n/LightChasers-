@@ -35,14 +35,14 @@ public class AttackerMovementAlex : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (canInput && forward || canInput && !cameraInverted)
+        if (canInput && forward && !cameraInverted)
         {
             constantForward();
             HandleRotation();
             Cursor.lockState = CursorLockMode.Locked;
         }
 
-        else if (canInput && !forward)
+        else if (canInput && !forward && !cameraInverted)
         {
             constantBackward();
             HandleRotation();
@@ -82,6 +82,7 @@ public class AttackerMovementAlex : MonoBehaviour
 
     void InvertedHandleRotation()
     {
+        Debug.Log("InvertRotation");
         Vector2 lookDir = new Vector2(Input.GetAxis("Mouse X"), Input.GetAxis("Mouse Y"));
 
         verticalRotation += (-lookDir.y) * sensitivity;
@@ -136,6 +137,14 @@ public class AttackerMovementAlex : MonoBehaviour
         camera.transform.Rotate(rotation);
 
         cameraInverted = true;
+
+        currentTime -= Time.deltaTime;
+
+        if(currentTime < 0)
+        {
+            cameraInverted = false;
+            currentTime = duration;
+        }
 
 
     }
