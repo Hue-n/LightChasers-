@@ -9,6 +9,8 @@ public class PlayerControllerHuen : MonoBehaviour
 
     public Transform cam;
 
+    public GameObject invertedText;
+
     public float speed = 3;
     public float sensitivity = 3;
     public float jumpForce = 3;
@@ -125,6 +127,8 @@ public class PlayerControllerHuen : MonoBehaviour
         
         rb.velocity = invertedmoveDir;
 
+        invertedText.SetActive(true);
+
         if(Input.GetKey(KeyCode.A))
         {
             rotation += Time.deltaTime * sensitivity;
@@ -167,7 +171,24 @@ public class PlayerControllerHuen : MonoBehaviour
         {
             inverted = false;
             currentTime = duration;
+            invertedText.SetActive(false);
         }
+    }
+
+
+    public void slowdown()
+    {
+        speed = speed / 2;
+
+        currentTime -= Time.deltaTime;
+
+        if(currentTime < 0)
+        {
+            speed = 20;
+            currentTime = duration;
+        }
+
+
     }
 
 

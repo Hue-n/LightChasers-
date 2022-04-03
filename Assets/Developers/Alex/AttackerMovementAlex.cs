@@ -9,6 +9,7 @@ public class AttackerMovementAlex : MonoBehaviour
 
     public Transform cam;
     public GameObject camera;
+    public GameObject ReversedText;
 
     public float speed = 20;
     public float sensitivity = 3;
@@ -123,10 +124,14 @@ public class AttackerMovementAlex : MonoBehaviour
 
         currentTime -= Time.deltaTime;
 
+        ReversedText.SetActive(true);
+
         if(currentTime < 0)
         {
             forward = true;
             currentTime = duration;
+            ReversedText.SetActive(false);
+
         }
     }
 
@@ -149,4 +154,18 @@ public class AttackerMovementAlex : MonoBehaviour
 
     }
     
+    public void slowdown()
+    {
+        speed = speed / 2;
+
+        currentTime -= Time.deltaTime;
+
+        if(currentTime < 0)
+        {
+            speed = 20;
+            currentTime = duration;
+        }
+
+
+    }
 }
