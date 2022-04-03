@@ -102,6 +102,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   cam: {fileID: 1991540624272644807}
+  camera: {fileID: 1991540624272644810}
   speed: 20
   sensitivity: 3
   duration: 5
@@ -296,12 +297,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 086e0d6cab9072a4d964387f4c7575dd, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  targetPoint: {fileID: 0}
   duration: 1
   magnitude: 1
   falloff: 1
-  orbitSpeed: 2
-  orbitDistance: 2
 --- !u!1 &4474509763794109381
 GameObject:
   m_ObjectHideFlags: 0

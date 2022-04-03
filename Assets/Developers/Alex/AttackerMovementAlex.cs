@@ -8,6 +8,7 @@ public class AttackerMovementAlex : MonoBehaviour
     bool canInput = true;
 
     public Transform cam;
+    public GameObject camera;
 
     public float speed = 20;
     public float sensitivity = 3;
@@ -20,6 +21,7 @@ public class AttackerMovementAlex : MonoBehaviour
     float horizontalRotation = 0;
 
     bool forward = true;
+    bool cameraInverted = false;
 
     float timer;
 
@@ -33,7 +35,7 @@ public class AttackerMovementAlex : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (canInput && forward)
+        if (canInput && forward || canInput && !cameraInverted)
         {
             constantForward();
             HandleRotation();
@@ -45,6 +47,14 @@ public class AttackerMovementAlex : MonoBehaviour
             constantBackward();
             HandleRotation();
         }
+
+        else if (canInput && cameraInverted)
+        {
+            constantForward();
+            InvertedHandleRotation();
+        }
+
+        
 
         else
         {
@@ -70,6 +80,18 @@ public class AttackerMovementAlex : MonoBehaviour
         cam.localRotation = Quaternion.Euler(verticalRotation, cam.localRotation.y, cam.localRotation.z);
     }
 
+    void InvertedHandleRotation()
+    {
+        Vector2 lookDir = new Vector2(Input.GetAxis("Mouse X"), Input.GetAxis("Mouse Y"));
+
+        verticalRotation += (-lookDir.y) * sensitivity;
+        horizontalRotation += lookDir.x * sensitivity;
+
+        verticalRotation = Mathf.Clamp(verticalRotation, -90, 90);
+
+        transform.localRotation = Quaternion.Euler(0, horizontalRotation, 0);
+        cam.localRotation = Quaternion.Euler(verticalRotation, cam.localRotation.y, cam.localRotation.z);
+    }
     
     void constantForward()
     {
@@ -105,6 +127,17 @@ public class AttackerMovementAlex : MonoBehaviour
             forward = true;
             currentTime = duration;
         }
+    }
+
+    public void flipCamera()
+    {
+        Debug.Log("Camera Flipped");
+        Vector3 rotation = new Vector3(0, 0, 180);
+        camera.transform.Rotate(rotation);
+
+        cameraInverted = true;
+
+
     }
     
 }

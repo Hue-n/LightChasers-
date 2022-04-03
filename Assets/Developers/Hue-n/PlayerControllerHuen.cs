@@ -114,6 +114,17 @@ public class PlayerControllerHuen : MonoBehaviour
 
     public void InvertControls()
     {
+        
+        float invmoveX = -Input.GetAxisRaw("Horizontal");
+        float invmoveZ = -Input.GetAxisRaw("Vertical");
+        Vector2 invuserInput = new Vector2(-invmoveX, -invmoveZ).normalized;
+        Vector3 invertedForward = transform.forward * invuserInput.y;
+        invertedForward *= speed;
+
+        Vector3 invertedmoveDir = new Vector3(invertedForward.x, rb.velocity.y, invertedForward.z);
+        
+        rb.velocity = invertedmoveDir;
+
         if(Input.GetKey(KeyCode.A))
         {
             rotation += Time.deltaTime * sensitivity;
@@ -124,17 +135,31 @@ public class PlayerControllerHuen : MonoBehaviour
             rotation -= Time.deltaTime * sensitivity;
         }
 
-        transform.localRotation = Quaternion.Euler(0, rotation, 0);
+        if(Input.GetKey(KeyCode.W))
+        {
+            Debug.Log("W pressed");
+            //rb.velocity = invertedmoveDir;
+        }
 
+        if(Input.GetKey(KeyCode.S))
+        {
+            Debug.Log("S pressed");
+            //rb.velocity = invertedmoveDir;
+        }
+
+        
+        transform.localRotation = Quaternion.Euler(0, rotation, 0);
+        /*
         float moveX = Input.GetAxisRaw("Horizontal");
         float moveZ = Input.GetAxisRaw("Vertical");
         Vector2 userInput = new Vector2(moveX, moveZ).normalized;
-        Vector3 invertedConversion = (transform.right * userInput.x) + (transform.forward * userInput.y);
+        Vector3 invertedConversion = ((-transform.right) * userInput.x) + ((-transform.forward) * userInput.y);
         invertedConversion *= speed;
 
         Vector3 moveDir = new Vector3(invertedConversion.x, rb.velocity.y, invertedConversion.z);
                 
         rb.velocity = moveDir;
+        */
 
         currentTime -= Time.deltaTime;
 
