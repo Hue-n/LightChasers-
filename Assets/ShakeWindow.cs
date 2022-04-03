@@ -20,10 +20,6 @@ public class ShakeWindow : MonoBehaviour
 
     RECT rect;
     public bool isShaking;
-    [DllImport("user32.dll")]
-    static extern IntPtr GetForegroundWindow();
-
-    IntPtr window = GetForegroundWindow();
 
     [DllImport("user32.dll", SetLastError = true)]
     static extern bool SetWindowPos(IntPtr hWnd, IntPtr hWndInsertAfter, int X, int Y, int cx, int cy, uint uFlags);
@@ -32,16 +28,18 @@ public class ShakeWindow : MonoBehaviour
     [return: MarshalAs(UnmanagedType.Bool)]
     static extern bool GetWindowRect(IntPtr hWnd, ref RECT rect);
 
-    private void Update()
+    void StartImpulse(float _duration, float _magnitude, float _falloff)
     {
-        if (Input.GetKeyDown(KeyCode.Space) && !isShaking)
-        {
-            StartCoroutine(Impulse(window, duration, magnitude, falloff));
+        if (!isShaking)
+        { 
+            StartCoroutine(Impulse(NewGameManager.window, _duration, _magnitude, _falloff));
         }
     }
 
     IEnumerator Impulse(IntPtr wndw, float _duration, float _magnitude, float _falloff)
     {
+        
+        Screen.fullScreen = false;
         isShaking = true;
         float currentTime = 0;
         float tempMag = _magnitude;
@@ -55,9 +53,9 @@ public class ShakeWindow : MonoBehaviour
             tempMag = Mathf.Lerp(_magnitude, 0, currentTime / _duration);
 
             rect.Left += (int)randomOffset;
-            rect.Left %= Screen.currentResolution.width;
+            rect.Left %= Display.main.systemWidth;
             rect.Top += (int)randomOffset;
-            rect.Top %= Screen.currentResolution.height;
+            rect.Top %= Display.main.systemHeight;
 
             SetWindowPos(wndw, IntPtr.Zero, (int)rect.Left, (int)rect.Top, 780, 780, uFlags: 0);
             currentTime += Time.deltaTime;
@@ -65,5 +63,7 @@ public class ShakeWindow : MonoBehaviour
         }
 
         isShaking = false;
+        Screen.fullScreen = true;
+        Screen.SetResolution(1920, 1080, true);
     }
 }

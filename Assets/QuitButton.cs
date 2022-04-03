@@ -30,7 +30,7 @@ public class QuitButton : MonoBehaviour
             quitButton.alpha = 0;
         }
 
-        if (currentTime == quitTime)
+        if (currentTime >= quitTime)
         {
             Application.Quit();
         }

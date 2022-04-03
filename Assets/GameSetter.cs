@@ -24,9 +24,14 @@ public class GameSetter : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        gameTime = NewGameManager.instance.maxGameTime;
+        //gameTime = NewGameManager.instance.maxGameTime;
         AttackCollisionCheck.aWinCaster += AnnounceWinner;
         StartGame();
+    }
+
+    private void OnDestroy()
+    {
+        AttackCollisionCheck.aWinCaster -= AnnounceWinner;
     }
 
     void AnnounceWinner(int winner)

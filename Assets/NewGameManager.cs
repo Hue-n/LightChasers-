@@ -1,3 +1,5 @@
+using System;
+using System.Runtime.InteropServices;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -8,6 +10,7 @@ public delegate void FadeInComplete();
 
 public class NewGameManager : MonoBehaviour
 {
+    public static IntPtr window;
     public static event FadeOutComplete fadeOutComplete;
     public static event FadeInComplete fadeInComplete;
 
@@ -16,6 +19,9 @@ public class NewGameManager : MonoBehaviour
     public float maxGameTime;
     public float fadeTime;
     int winner;
+
+    [DllImport("user32.dll")]
+    static extern IntPtr GetForegroundWindow();
 
     // Start is called before the first frame update
     void Start()
@@ -28,6 +34,9 @@ public class NewGameManager : MonoBehaviour
             SceneManager.sceneLoaded += FadeIntoNew;
             GameSetter.winnerCaster += SetWinner;
             GameEnd.resetGameCaster += ResetGame;
+
+            // get and keep a reference to the current window
+            window = GetForegroundWindow();
         }
         else
         {

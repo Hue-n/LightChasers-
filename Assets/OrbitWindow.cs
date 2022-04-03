@@ -26,23 +26,60 @@ public class OrbitWindow : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        StartCoroutine(OrbitExplorer(window));
+        yOffset = (Display.main.systemHeight / 2) - (newHeight / 2);
+        xOffset = (Display.main.systemWidth / 2) + (newHeight / 2);
     }
 
-    IEnumerator OrbitExplorer(IntPtr window)
+    void OrbitForTime(float time)
+    {
+        StartCoroutine(OrbitExplorer(NewGameManager.window, time));
+    }
+
+    void TranslateForTime(float time)
+    {
+        StartCoroutine(TranslateForTimeCorout(NewGameManager.window, time));
+    }
+
+    IEnumerator TranslateForTimeCorout(IntPtr window, float duration)
     {
         Screen.fullScreen = false;
 
         float currentTime = 0;
         Vector2 newPos;
 
-        while (true)
+        while (currentTime < duration)
+        {
+            if (window != IntPtr.Zero)
+            {
+                newPos.x = ((currentTime * speed) + xOffset);
+                newPos.y = yOffset + Mathf.Sin(currentTime * frequency) * distance;
+
+                SetWindowPos(window, IntPtr.Zero, (int)newPos.x, (int)newPos.y, newWidth, newHeight, uFlags: 0);
+                currentTime += Time.deltaTime;
+                yield return null;
+            }
+
+            yield return null;
+        }
+
+        Screen.fullScreen = true;
+        Screen.SetResolution(1920, 1080, true);
+    }
+
+    IEnumerator OrbitExplorer(IntPtr window, float duration)
+    {
+        Screen.fullScreen = false;
+
+        float currentTime = 0;
+        Vector2 newPos;
+        
+        while (currentTime < duration)
         {
             if (window != IntPtr.Zero)
             {
                 newPos.x = -(Mathf.Sin(currentTime * frequency) * distance) + xOffset;
                 newPos.y = -(Mathf.Cos(currentTime * frequency) * distance) + yOffset;
-                //newPos.x = ((currentTime * speed) % Screen.currentResolution.width) + xOffset;
+                //newPos.x = ((currentTime * speed) + xOffset);
                 //newPos.y = yOffset + Mathf.Sin(currentTime * frequency) * distance;
 
                 SetWindowPos(window, IntPtr.Zero, (int)newPos.x, (int)newPos.y, newWidth, newHeight, uFlags: 0);
@@ -52,6 +89,9 @@ public class OrbitWindow : MonoBehaviour
 
             yield return null;
         }
+
+        Screen.fullScreen = true;
+        Screen.SetResolution(1920, 1080, true);
     }
 }
 

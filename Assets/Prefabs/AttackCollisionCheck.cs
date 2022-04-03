@@ -7,11 +7,13 @@ public class AttackCollisionCheck : MonoBehaviour
 {
     public static event AttackerWin aWinCaster;
 
+    bool gameOver = false;
     private void OnCollisionEnter(Collision collision)
     {
-        if (collision.gameObject.CompareTag("Defender"))
+        if (collision.gameObject.CompareTag("Defender") && !gameOver)
         {
             aWinCaster?.Invoke(1);
+            gameOver = true;
         }
     }
 }

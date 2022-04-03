@@ -14,6 +14,11 @@ public class GameUI : MonoBehaviour
         GameSetter.timeCaster += SetTimeText;   
     }
 
+    private void OnDestroy()
+    {
+        GameSetter.timeCaster -= SetTimeText;
+
+    }
     void SetTimeText(float time)
     {
         TimeSpan _time = TimeSpan.FromSeconds(time);

@@ -21,6 +21,11 @@ public class CameraShake : MonoBehaviour
         AttackCollisionCheck.aWinCaster += Shake;
     }
 
+    private void OnDestroy()
+    {
+        AttackCollisionCheck.aWinCaster -= Shake;
+    }
+
     // Update is called once per frame
     void Update()
     {
