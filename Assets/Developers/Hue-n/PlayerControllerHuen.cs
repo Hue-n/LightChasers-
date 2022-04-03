@@ -126,6 +126,16 @@ public class PlayerControllerHuen : MonoBehaviour
 
         transform.localRotation = Quaternion.Euler(0, rotation, 0);
 
+        float moveX = Input.GetAxisRaw("Horizontal");
+        float moveZ = Input.GetAxisRaw("Vertical");
+        Vector2 userInput = new Vector2(moveX, moveZ).normalized;
+        Vector3 invertedConversion = (transform.right * userInput.x) + (transform.forward * userInput.y);
+        invertedConversion *= speed;
+
+        Vector3 moveDir = new Vector3(invertedConversion.x, rb.velocity.y, invertedConversion.z);
+                
+        rb.velocity = moveDir;
+
         currentTime -= Time.deltaTime;
 
         if(currentTime < 0)
