@@ -2801,8 +2801,8 @@ MonoBehaviour:
 =======
   m_GameObject: {fileID: 1917587710}
   m_LocalRotation: {x: -0.0013184551, y: 0.7071057, z: 0.70710546, w: 0.0013185756}
-  m_LocalPosition: {x: -73.69, y: 21.18, z: -70.54}
-  m_LocalScale: {x: 22.341812, y: 0.29249, z: 5.405345}
+  m_LocalPosition: {x: -76.05, y: 21.18, z: -70.55}
+  m_LocalScale: {x: 27.974182, y: 0.29249, z: 5.405345}
   m_Children: []
   m_Father: {fileID: 949852538}
   m_RootOrder: 35
