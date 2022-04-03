@@ -24,6 +24,7 @@ public class NewGameManager : MonoBehaviour
         {
             instance = this;
             DontDestroyOnLoad(gameObject);
+            MainMenu.startCaster += StartGame;
             SceneManager.sceneLoaded += FadeIntoNew;
             GameSetter.winnerCaster += SetWinner;
             GameEnd.resetGameCaster += ResetGame;
@@ -91,10 +92,5 @@ public class NewGameManager : MonoBehaviour
         }
         fadeOut.alpha = 0;
         fadeInComplete?.Invoke();
-    }
-
-    public void QuitGame()
-    {
-        Application.Quit();
     }
 }

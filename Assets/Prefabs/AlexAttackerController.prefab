@@ -178,6 +178,7 @@ GameObject:
   - component: {fileID: 1991540624272644808}
   - component: {fileID: 1991540624272644809}
   - component: {fileID: 1991540624272644806}
+  - component: {fileID: 1106391581703135539}
   m_Layer: 0
   m_Name: PlayerCam
   m_TagString: MainCamera
@@ -230,7 +231,7 @@ Camera:
   m_Depth: 1
   m_CullingMask:
     serializedVersion: 2
-    m_Bits: 4294967295
+    m_Bits: 1015
   m_RenderingPath: -1
   m_TargetTexture: {fileID: 0}
   m_TargetDisplay: 0
@@ -283,6 +284,24 @@ MonoBehaviour:
   m_RequiresDepthTexture: 0
   m_RequiresColorTexture: 0
   m_Version: 2
+--- !u!114 &1106391581703135539
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1991540624272644810}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 086e0d6cab9072a4d964387f4c7575dd, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  targetPoint: {fileID: 0}
+  duration: 1
+  magnitude: 1
+  falloff: 1
+  orbitSpeed: 2
+  orbitDistance: 2
 --- !u!1 &4474509763794109381
 GameObject:
   m_ObjectHideFlags: 0

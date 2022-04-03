@@ -49,11 +49,12 @@ public class GameSetter : MonoBehaviour
             gameTime -= Time.deltaTime;
             gameTime = Mathf.Clamp(gameTime, 0, float.MaxValue);
             timeCaster?.Invoke(gameTime);
-        }
 
-        if (gameTime == 0)
-        {
-            AnnounceWinner(0);
+            if (gameTime == 0)
+            {
+                AnnounceWinner(0);
+                game = false;
+            }
         }
     }
 }
