@@ -5,6 +5,7 @@ using UnityEngine;
 public class PlayerControllerHuen : MonoBehaviour
 {
     bool canInput = true;
+    bool inverted = false;
 
     public Transform cam;
 
@@ -13,6 +14,10 @@ public class PlayerControllerHuen : MonoBehaviour
     public float jumpForce = 3;
     float rotation;
     private Rigidbody rb;
+
+    float currentTime;
+    float timer;
+    float duration = 5f;
 
     [SerializeField] Transform groundCheck;
     [SerializeField] LayerMask ground;
@@ -24,16 +29,22 @@ public class PlayerControllerHuen : MonoBehaviour
     {
         rotation = transform.rotation.y;
         rb = GetComponent<Rigidbody>();
+        currentTime = duration;
     }
 
     // Update is called once per frame
     void Update()
     {
-        if (canInput)
+        if (canInput && !inverted)
         {
             CalculateMovement();
             HandleRotation();
             Cursor.lockState = CursorLockMode.Locked;
+        }
+        else if (canInput && inverted)
+        {
+            InvertControls();
+            CalculateMovement();
         }
         else
         {
@@ -46,6 +57,11 @@ public class PlayerControllerHuen : MonoBehaviour
             doubleJump = false;
         }
         */
+    }
+
+    public void SetInverted(bool val)
+    {
+        inverted = val;
     }
 
     void CalculateMovement()
@@ -109,6 +125,14 @@ public class PlayerControllerHuen : MonoBehaviour
         }
 
         transform.localRotation = Quaternion.Euler(0, rotation, 0);
+
+        currentTime -= Time.deltaTime;
+
+        if(currentTime < 0)
+        {
+            inverted = false;
+            currentTime = duration;
+        }
     }
 
 

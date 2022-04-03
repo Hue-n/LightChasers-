@@ -4,6 +4,9 @@ using UnityEngine;
 
 public class DefenderInvertedMovement : MonoBehaviour
 {
+
+    public GameObject Defender;
+
     void OnTriggerEnter (Collider other)
     {
         if (other.CompareTag("Attacker") || other.CompareTag("Defender"))
@@ -17,7 +20,7 @@ public class DefenderInvertedMovement : MonoBehaviour
         Debug.Log("Defender Inverted");
 
         //call defender script function that inverts their movement
-        //player.GetComponent<PlayerControllerHuen>().SetForward(false);
+        Defender.GetComponent<PlayerControllerHuen>().SetInverted(true);
 
         Destroy(gameObject);
     }
