@@ -14,12 +14,19 @@ public struct RECT
 
 public class ShakeWindow : MonoBehaviour
 {
+    public static event CatastropheDone cataDoneCaster;
+
     public float duration;
     public float magnitude;
     public float falloff;
+    public float xOffset;
+    public float yOffset;
 
     RECT rect;
     public bool isShaking;
+
+    //[DllImport("user32.dll")]
+    //static extern IntPtr GetForegroundWindow();
 
     [DllImport("user32.dll", SetLastError = true)]
     static extern bool SetWindowPos(IntPtr hWnd, IntPtr hWndInsertAfter, int X, int Y, int cx, int cy, uint uFlags);
@@ -27,6 +34,20 @@ public class ShakeWindow : MonoBehaviour
     [DllImport("user32.dll")]
     [return: MarshalAs(UnmanagedType.Bool)]
     static extern bool GetWindowRect(IntPtr hWnd, ref RECT rect);
+
+    //IntPtr window = GetForegroundWindow();
+
+    private void Start()
+    {
+        yOffset = (Display.main.systemHeight / 2) - (780 / 2);
+        xOffset = (Display.main.systemWidth / 2) + (780 / 2);
+        GameSetter.shakeScreenCaster += StartImpulse;
+    }
+
+    private void OnDestroy()
+    {
+        GameSetter.shakeScreenCaster -= StartImpulse;
+    }
 
     void StartImpulse(float _duration, float _magnitude, float _falloff)
     {
@@ -38,11 +59,14 @@ public class ShakeWindow : MonoBehaviour
 
     IEnumerator Impulse(IntPtr wndw, float _duration, float _magnitude, float _falloff)
     {
-        
         Screen.fullScreen = false;
         isShaking = true;
         float currentTime = 0;
         float tempMag = _magnitude;
+
+        rect.Left = (int)xOffset;
+        rect.Top = (int)yOffset;
+        SetWindowPos(wndw, IntPtr.Zero, (int)rect.Left, (int)rect.Top, 780, 780, uFlags: 0);
 
         while (currentTime < _duration)
         {
@@ -53,9 +77,7 @@ public class ShakeWindow : MonoBehaviour
             tempMag = Mathf.Lerp(_magnitude, 0, currentTime / _duration);
 
             rect.Left += (int)randomOffset;
-            rect.Left %= Display.main.systemWidth;
             rect.Top += (int)randomOffset;
-            rect.Top %= Display.main.systemHeight;
 
             SetWindowPos(wndw, IntPtr.Zero, (int)rect.Left, (int)rect.Top, 780, 780, uFlags: 0);
             currentTime += Time.deltaTime;
@@ -65,5 +87,6 @@ public class ShakeWindow : MonoBehaviour
         isShaking = false;
         Screen.fullScreen = true;
         Screen.SetResolution(1920, 1080, true);
+        cataDoneCaster?.Invoke();
     }
 }

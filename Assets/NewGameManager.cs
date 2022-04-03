@@ -35,6 +35,9 @@ public class NewGameManager : MonoBehaviour
             GameSetter.winnerCaster += SetWinner;
             GameEnd.resetGameCaster += ResetGame;
 
+            Screen.fullScreen = true;
+            Screen.SetResolution(1920, 1080, true);
+
             // get and keep a reference to the current window
             window = GetForegroundWindow();
         }
@@ -74,7 +77,7 @@ public class NewGameManager : MonoBehaviour
     IEnumerator SwitchScenes(int scene)
     {
         yield return FadeOut(fadeTime);
-        SceneManager.LoadScene(scene, LoadSceneMode.Single);
+        SceneManager.LoadScene(scene);
     }
 
     IEnumerator FadeOut(float _fadeOutTime)

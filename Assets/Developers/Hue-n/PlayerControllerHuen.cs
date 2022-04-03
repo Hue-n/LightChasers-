@@ -22,7 +22,7 @@ public class PlayerControllerHuen : MonoBehaviour
 
     float currentTime;
     float timer;
-    float duration = 5f;
+    public float duration = 5f;
 
     [SerializeField] Transform groundCheck;
     [SerializeField] LayerMask ground;

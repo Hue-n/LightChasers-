@@ -15,10 +15,10 @@ public class OrbitWindow : MonoBehaviour
     public int newWidth;
     public int newHeight;
 
-    [DllImport("user32.dll")]
-    static extern IntPtr GetForegroundWindow();
+    //[DllImport("user32.dll")]
+    //static extern IntPtr GetForegroundWindow();
 
-    IntPtr window = GetForegroundWindow();
+    //IntPtr window = GetForegroundWindow();
 
     [DllImport("user32.dll", SetLastError = true)]
     static extern bool SetWindowPos(IntPtr hWnd, IntPtr hWndInsertAfter, int X, int Y, int cx, int cy, uint uFlags);
