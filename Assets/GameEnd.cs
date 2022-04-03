@@ -17,6 +17,9 @@ public class GameEnd : MonoBehaviour
         winner = NewGameManager.instance.GetWinner() == 1 ? "Attacker Wins!" : "Defender Wins!";
         winText.text = winner;
         Cursor.lockState = CursorLockMode.None;
+
+        Screen.fullScreen = true;
+        Screen.SetResolution(1920, 1080, true);
     }
 
     public void ReturnToMain()

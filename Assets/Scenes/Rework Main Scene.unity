@@ -892,6 +892,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   explosion: {fileID: 8300000, guid: 70c143b041895754389319f458ea4d52, type: 3}
+  ding: {fileID: 8300000, guid: 2712407e2e1aa6948b7af26e203132db, type: 3}
 --- !u!82 &1194514490
 AudioSource:
   m_ObjectHideFlags: 0

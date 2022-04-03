@@ -5,6 +5,8 @@ using UnityEngine;
 public delegate void Winner(int id);
 public delegate void TimeCaster(float val);
 public delegate void CataTimeCaster(float val);
+public delegate void CatastropheNameCaster(string name);
+public delegate void CatastropheStart();
 public delegate void CatastropheDone();
 
 public delegate void ShakeScreenCaster(float duration, float magnitude, float falloff);
@@ -16,6 +18,8 @@ public class GameSetter : MonoBehaviour
     public static event TimeCaster timeCaster;
     public static event CataTimeCaster cataTime;
     public static event RotateMinimap rotateMiniMap;
+    public static event CatastropheStart cataStart;
+    public static event CatastropheNameCaster cataName;
 
     public Transform attackerSpawn;
     public Transform defenderSpawn;
@@ -45,6 +49,7 @@ public class GameSetter : MonoBehaviour
     {
         //gameTime = NewGameManager.instance.maxGameTime;
         AttackCollisionCheck.aWinCaster += AnnounceWinner;
+        AttackerMovementAlex.cataDone += ReceiveCatastropheCallback;
         ShakeWindow.cataDoneCaster += ReceiveCatastropheCallback;
 
         catastropheTimer = Gates[0];
@@ -55,6 +60,7 @@ public class GameSetter : MonoBehaviour
     private void OnDestroy()
     {
         AttackCollisionCheck.aWinCaster -= AnnounceWinner;
+        AttackerMovementAlex.cataDone -= ReceiveCatastropheCallback;
         ShakeWindow.cataDoneCaster -= ReceiveCatastropheCallback;
     }
 
@@ -77,7 +83,7 @@ public class GameSetter : MonoBehaviour
         // second one starts ten seconds after at 40 seconds, lasts 30 seconds
         // third one starts ten seconds after that and lasts 10 seconds
 
-        for (int i = 0; i < 3; i++)
+        for (int i = 0; i < 5; i++)
         {
             float time = 0;
             // countdown hits zero.
@@ -94,11 +100,14 @@ public class GameSetter : MonoBehaviour
                 case 2:
                     time = 10;
                     break;
+                default:
+                    time = 20;
+                    break;
             }
 
             CallForCatastrophe(time, i + 1);
             yield return WaitForCatastropheCallback();
-            catastropheTimer = Gates[i];
+            catastropheTimer = 10;
         }
     }
 
@@ -106,16 +115,21 @@ public class GameSetter : MonoBehaviour
     {
         int answer = (int)Random.Range(0, 2);
 
+        cataStart?.Invoke();
+
         switch (answer)
         {
             case 0:
+                cataName?.Invoke("REVERSE PLAYER CONTROLS!!~");
                 attackerReference.GetComponent<AttackerMovementAlex>().duration = seconds;
                 attackerReference.GetComponent<AttackerMovementAlex>().SetForward(false);
 
-                attackerReference.GetComponent<PlayerControllerHuen>().duration = seconds;
+                defenderReference.GetComponent<PlayerControllerHuen>().duration = seconds;
                 defenderReference.GetComponent<PlayerControllerHuen>().SetInverted(true);
                 break;
             case 1:
+
+                cataName?.Invoke("EARTHQUAKE!!!!");
                 shakeScreenCaster(seconds, 5 * round, 1);
                 break;
         }

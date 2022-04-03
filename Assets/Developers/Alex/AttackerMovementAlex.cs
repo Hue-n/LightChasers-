@@ -4,6 +4,7 @@ using UnityEngine;
 
 public class AttackerMovementAlex : MonoBehaviour
 {
+    public static event CatastropheDone cataDone;
 
     bool canInput = true;
 
@@ -133,7 +134,7 @@ public class AttackerMovementAlex : MonoBehaviour
             forward = true;
             currentTime = duration;
             ReversedText.SetActive(false);
-
+            cataDone?.Invoke();
         }
     }
 

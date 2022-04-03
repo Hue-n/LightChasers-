@@ -13,7 +13,6 @@ public class PlayerControllerHuen : MonoBehaviour
     public GameObject SlowdownText;
     public GameObject SuperjumpText;
 
-
     public float speed = 3;
     public float sensitivity = 3;
     public float jumpForce = 3;

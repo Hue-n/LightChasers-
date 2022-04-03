@@ -10,6 +10,7 @@ public class AudioManager : MonoBehaviour
     AudioSource sfxSource;
 
     public AudioClip explosion;
+    public AudioClip ding;
 
     private void Start()
     {
@@ -23,12 +24,19 @@ public class AudioManager : MonoBehaviour
             MainMenu.startCaster += FadeOutSource;
             SceneManager.sceneLoaded += StartFadeInSource;
             AttackCollisionCheck.aWinCaster += PlayExplosion;
+            GameSetter.cataStart += PlayCataStartSFX;
         }
         else
         {
             Destroy(gameObject);
         }
     }
+
+    void PlayCataStartSFX()
+    {
+        sfxSource.PlayOneShot(ding);
+    }
+
     void FadeOutSource()
     {
         StartCoroutine(FadeOutSource(musicSource, 1));
