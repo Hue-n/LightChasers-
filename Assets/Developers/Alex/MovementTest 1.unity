@@ -1968,22 +1968,6 @@ PrefabInstance:
       propertyPath: m_TagString
       value: Attacker
       objectReference: {fileID: 0}
-    - target: {fileID: 1991540624272644808, guid: d75190db9e13ece4bb33d0a429fb312e, type: 3}
-      propertyPath: m_NormalizedViewPortRect.x
-      value: 0.01
-      objectReference: {fileID: 0}
-    - target: {fileID: 1991540624272644808, guid: d75190db9e13ece4bb33d0a429fb312e, type: 3}
-      propertyPath: m_NormalizedViewPortRect.y
-      value: 0.03
-      objectReference: {fileID: 0}
-    - target: {fileID: 1991540624272644808, guid: d75190db9e13ece4bb33d0a429fb312e, type: 3}
-      propertyPath: m_NormalizedViewPortRect.width
-      value: 0.4
-      objectReference: {fileID: 0}
-    - target: {fileID: 1991540624272644808, guid: d75190db9e13ece4bb33d0a429fb312e, type: 3}
-      propertyPath: m_NormalizedViewPortRect.height
-      value: 0.4
-      objectReference: {fileID: 0}
     - target: {fileID: 1991540624272644809, guid: d75190db9e13ece4bb33d0a429fb312e, type: 3}
       propertyPath: m_Enabled
       value: 0
@@ -3224,22 +3208,6 @@ PrefabInstance:
     - target: {fileID: 1991540622663593537, guid: 8b18661fdc4cfb148b39d7f738611bef, type: 3}
       propertyPath: m_TagString
       value: Defender
-      objectReference: {fileID: 0}
-    - target: {fileID: 1991540624272644808, guid: 8b18661fdc4cfb148b39d7f738611bef, type: 3}
-      propertyPath: m_NormalizedViewPortRect.x
-      value: 0.58
-      objectReference: {fileID: 0}
-    - target: {fileID: 1991540624272644808, guid: 8b18661fdc4cfb148b39d7f738611bef, type: 3}
-      propertyPath: m_NormalizedViewPortRect.y
-      value: 0.57
-      objectReference: {fileID: 0}
-    - target: {fileID: 1991540624272644808, guid: 8b18661fdc4cfb148b39d7f738611bef, type: 3}
-      propertyPath: m_NormalizedViewPortRect.width
-      value: 0.4
-      objectReference: {fileID: 0}
-    - target: {fileID: 1991540624272644808, guid: 8b18661fdc4cfb148b39d7f738611bef, type: 3}
-      propertyPath: m_NormalizedViewPortRect.height
-      value: 0.4
       objectReference: {fileID: 0}
     - target: {fileID: 1991540624272644810, guid: 8b18661fdc4cfb148b39d7f738611bef, type: 3}
       propertyPath: m_Layer
