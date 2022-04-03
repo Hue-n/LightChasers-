@@ -10,11 +10,11 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 8e6292b2c06870d4495f009f912b9600, type: 3}
-  m_Name: PP Profile
+  m_Name: Pillars Profile 1
   m_EditorClassIdentifier: 
   settings:
-  - {fileID: 5142531259087220285}
---- !u!114 &5142531259087220285
+  - {fileID: 6843753827215626893}
+--- !u!114 &6843753827215626893
 MonoBehaviour:
   m_ObjectHideFlags: 3
   m_CorrespondingSourceObject: {fileID: 0}
@@ -32,10 +32,10 @@ MonoBehaviour:
     value: 0
   intensity:
     overrideState: 1
-    value: 1
+    value: 1.87
   threshold:
     overrideState: 1
-    value: 1
+    value: 1.1
   softKnee:
     overrideState: 0
     value: 0.5
