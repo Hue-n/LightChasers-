@@ -17,7 +17,7 @@ GameObject:
   - component: {fileID: 2729687206099034619}
   m_Layer: 0
   m_Name: AlexPlayercontroller2
-  m_TagString: Player
+  m_TagString: Defender
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -208,10 +208,10 @@ Camera:
   m_FocalLength: 50
   m_NormalizedViewPortRect:
     serializedVersion: 2
-    x: 0
-    y: 0
-    width: 1
-    height: 1
+    x: 0.01
+    y: 0.01
+    width: 0.45
+    height: 0.45
   near clip plane: 0.3
   far clip plane: 1000
   field of view: 60
@@ -239,7 +239,7 @@ AudioListener:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1991540624272644810}
-  m_Enabled: 1
+  m_Enabled: 0
 --- !u!114 &1991540624272644806
 MonoBehaviour:
   m_ObjectHideFlags: 0

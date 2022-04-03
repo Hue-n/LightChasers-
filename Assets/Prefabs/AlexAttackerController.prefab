@@ -15,9 +15,10 @@ GameObject:
   - component: {fileID: 1991540622663593536}
   - component: {fileID: 1991540622663593531}
   - component: {fileID: 2729687206099034619}
+  - component: {fileID: 3517542371073250265}
   m_Layer: 0
   m_Name: AlexAttackerController
-  m_TagString: Untagged
+  m_TagString: Attacker
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -102,6 +103,7 @@ MonoBehaviour:
   cam: {fileID: 1991540624272644807}
   speed: 20
   sensitivity: 3
+  duration: 5
 --- !u!136 &1991540622663593536
 CapsuleCollider:
   m_ObjectHideFlags: 0
@@ -151,6 +153,18 @@ Animator:
   m_HasTransformHierarchy: 1
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorControllerStateOnDisable: 0
+--- !u!114 &3517542371073250265
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1991540622663593537}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1ae962f8a740a794fbfdedf2addc136c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &1991540624272644810
 GameObject:
   m_ObjectHideFlags: 0
@@ -203,10 +217,10 @@ Camera:
   m_FocalLength: 50
   m_NormalizedViewPortRect:
     serializedVersion: 2
-    x: 0
-    y: 0
-    width: 1
-    height: 1
+    x: 0.5
+    y: 0.5
+    width: 0.45
+    height: 0.45
   near clip plane: 0.3
   far clip plane: 1000
   field of view: 60

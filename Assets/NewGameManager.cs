@@ -26,6 +26,7 @@ public class NewGameManager : MonoBehaviour
             DontDestroyOnLoad(gameObject);
             SceneManager.sceneLoaded += FadeIntoNew;
             GameSetter.winnerCaster += SetWinner;
+            GameEnd.resetGameCaster += ResetGame;
         }
         else
         {
@@ -33,10 +34,21 @@ public class NewGameManager : MonoBehaviour
         }
     }
 
+    void ResetGame()
+    {
+        winner = -1;
+        StartCoroutine(SwitchScenes(0));
+    }
+
     void SetWinner(int id)
     {
         winner = id;
         StartCoroutine(SwitchScenes(2));
+    }
+
+    public int GetWinner()
+    {
+        return winner;
     }
 
     public void FadeIntoNew(Scene scene, LoadSceneMode mode)

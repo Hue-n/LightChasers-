@@ -9,7 +9,7 @@ public class AttackCollisionCheck : MonoBehaviour
 
     private void OnCollisionEnter(Collision collision)
     {
-        if (collision.gameObject.tag == "Defender")
+        if (collision.gameObject.CompareTag("Defender"))
         {
             aWinCaster?.Invoke(1);
         }
